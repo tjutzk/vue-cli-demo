@@ -1,15 +1,12 @@
 <template>
     <div class="sidebar">
-        <el-menu mode="vertical" background-color="rgb(50,65,87)" text-color="#fff" active-text-color="#20a0ff">
-            <template v-for="(item.index in menuslist)">
-            </template>
-            <template v-else>
-                <el-menu-item>
-                    <i :class="item.icon"></i>
-                    <span>{{ item.title }}</span>
-                </el-menu-item>
-            </template>
-        </el-menu>
+       <ul>
+           <li v-for="(item,index) in menuslist" :key="index">
+               <router-link :to="item.path">
+                   {{item.title}}
+               </router-link>
+            </li>
+       </ul>
     </div>
 </template>
 
@@ -21,22 +18,26 @@ export default {
                 {
                     title:'系统首页',
                     index:'1',
-                    icon:'el-icon-location'
+                    icon:'el-icon-location',
+                    path:'/systemhome'
                 },
                 {
                     title:'基础表格',
                     index:'2',
-                    icon:'el-icon-location'
+                    icon:'el-icon-location',
+                    path:'/basicform',
                 },
                 {
                     title:'tab选项卡',
                     index:'3',
-                    icon:'el-icon-location'
+                    icon:'el-icon-location',
+                    path:'/tab',
                 },
                 {
                     title:'表单相关',
                     index:'4',
                     icon:'el-icon-location',
+                    path:'/form',
                     subitems:[
                         {
                             title:'基本表单',
@@ -70,17 +71,20 @@ export default {
                 {
                     title:'自定义图标',
                     index:'5',
-                    icon:'el-icon-location'
+                    icon:'el-icon-location',
+                    path:'/icon',
                 },
                 {
                     title:'schart图表',
                     index:'6',
-                    icon:'el-icon-location'
+                    icon:'el-icon-location',
+                    path:'/chart',
                 },
                 {
                     title:'拖拽组件',
                     index:'7',
                     icon:'el-icon-location',
+                    path:'/dragcomponent',
                     subitems:[
                         {
                             title:'拖拽列表',
@@ -98,6 +102,7 @@ export default {
                     title:'错误处理',
                     index:'8',
                     icon:'el-icon-location',
+                    path:'/errorpage',
                     subitems:[
                         {
                             title:'权限测试',
@@ -114,7 +119,8 @@ export default {
                 {
                     title:'支持作者',
                     index:'9',
-                    icon:'el-icon-location'
+                    icon:'el-icon-location',
+                    path:'/author',
                 },
 
             ]
