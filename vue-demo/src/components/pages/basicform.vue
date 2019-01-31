@@ -1,3 +1,3 @@
 <template>
-    <div>这是basichome</div>
+    <div>这是basicforme</div>
 </template>
