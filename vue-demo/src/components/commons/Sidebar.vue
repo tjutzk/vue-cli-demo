@@ -6,7 +6,8 @@
             text-color="#fff" 
             active-text-color="#ffd04b" 
             router
-            unique-opened>
+            unique-opened
+            :collapse="isCollapse">
             <template v-for="item in menuslist">
                 <template v-if="item.subitems">
                     <el-submenu :key="item.index" :index="item.index">
@@ -39,9 +40,12 @@
 </template>
 
 <script>
+import bus from './bus.js'
+
 export default {
     data(){
         return {
+            isCollapse:false,
             menuslist:[
                 {
                     title:'系统首页',
@@ -156,8 +160,14 @@ export default {
                     path:'author',
                 },
 
-            ]
+            ],
         }
+    },
+    methods: {
+    },
+
+    created () {
+        bus.$on('collapse',collapse => this.isCollapse = collapse)
     }
 }
 </script>
@@ -168,7 +178,6 @@ export default {
         height: 100%;
     }
 
-   
 </style>
 
 

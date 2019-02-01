@@ -1,7 +1,7 @@
 <template>
     <div class = "header">
         <div class="header_left">
-            <div class="collapse_btn">
+            <div class="collapse_btn" @click="changeCollapse">
                 <i class="el-icon-menu"></i>
             </div>
             <div class="logo">
@@ -39,8 +39,19 @@
     </div>
 </template>
 <script>
+    import bus from './bus.js'
     export default {
-        
+        data () {
+            return {
+                collapse:false,
+            }
+        },
+        methods: {
+            changeCollapse:function(){
+                this.collapse = !this.collapse;
+                bus.$emit('collapse',this.collapse);
+            }
+        }
     }
 </script>
 <style scoped>

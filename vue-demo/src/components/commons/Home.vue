@@ -2,8 +2,10 @@
     <div class="container">
         <v-header></v-header>
         <v-sidebar></v-sidebar>
-        <v-tags></v-tags>
-        <router-view></router-view>
+        <div class="content">
+            <v-tags></v-tags>
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
@@ -27,6 +29,14 @@ export default {
     .container{
         width: 100%;
         height:100%;
+    }
+
+    .content{
+        height:100%;
+        position: absolute;
+        top: 70px;
+        left: 250px;
+        right: 0;
     }
 </style>
 
