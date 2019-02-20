@@ -7,7 +7,7 @@
             <div class="content">
                 <list-container></list-container>
                 <router-view></router-view>
-                <x-search :search-list="data" @onclick-search="handleOnclickSearch"></x-search>
+                <x-search :search-list="data" :size="size" :width="width" @onclick-search="handleOnclickSearch"></x-search>
             </div>
         </div>
     </div>
@@ -27,9 +27,10 @@ export default {
             //数据格式：1.当数据格式中type传入的是按钮类型时，该value值传入的是按钮类型;
             //2.searchType属于高级搜索还是普通搜索
             //3.isRequire 是否为必填项
+            
             data:[{
                     id:1001,
-                    name:"微信昵称",
+                    name:"微信昵称:",
                     value:"就不吃肉",
                     type:"x-search-input",
                     searchType:"ordinarySearch",
@@ -37,7 +38,7 @@ export default {
                 },
                 {
                     id:1002,
-                    name:"微信号",
+                    name:"微信号:",
                     value:"K2still",    
                     type:"x-search-input",
                     searchType:"ordinarySearch",
@@ -45,7 +46,7 @@ export default {
                 },
                 {
                     id:1003,
-                    name:"手机号1",
+                    name:"手机号1:",
                     value:"13821641625",
                     type:"x-search-input-phone",
                     searchType:"ordinarySearch",
@@ -53,7 +54,7 @@ export default {
                 },
                 {
                     id:1100,
-                    name:"手机号2",
+                    name:"手机号2:",
                     value:"13821641625",
                     type:"x-search-input-phone",
                     searchType:"ordinarySearch",
@@ -61,7 +62,7 @@ export default {
                 },
                 {
                     id:1004,
-                    name:"性别",
+                    name:"性别:",
                     value:"",
                     type:"x-search-select",
                     searchType:"ordinarySearch",
@@ -79,7 +80,7 @@ export default {
                 },
                 {
                     id:1005,
-                    name:"商品种类",
+                    name:"商品种类:",
                     value:"",
                     type:"x-search-select",
                     searchType:"ordinarySearch",
@@ -105,15 +106,15 @@ export default {
                 },
                 {
                     id:1006,
-                    name:"生成时间",
+                    name:"生成时间:",
                     value:[],
                     type:"x-search-data",
                     searchType:"seniorSearch",
-                    isRequire:true,
+                    isRequire:false,
                 },
                 {
                     id:1007,
-                    name:"是否关注公众号",
+                    name:"是否关注公众号:",
                     value:"",
                     type:"x-search-radio",
                     searchType:"seniorSearch",
@@ -152,6 +153,10 @@ export default {
                 },
                 
             ],
+            //输入框size设置（设置el-ui size）值为：medium、small、mini 主要影响高度
+            size:"medium",
+            //输入框宽度
+            width:"150px",
         }
     },
     components:{

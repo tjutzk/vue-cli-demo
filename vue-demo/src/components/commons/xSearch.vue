@@ -4,6 +4,8 @@
             <component 
                 :is="item.type" 
                 :data="item" 
+                :size="mySize"
+                :width="myWidth"
                 @onclick-search-btn="handleOnclickSearchBtn"
                 @onclick-adchange-btn="handleOnclickAdchangeBtn"
                 @onclick-clear-btn="handleOnclickClearBtn"
@@ -34,14 +36,21 @@ export default {
         XSearchInputPhone,
         XSearchInputNumber
     },
+   
     data () {
         return {
-            //搜索组件的数据
+            // data数据格式：1.当数据格式中type传入的是按钮类型时，该value值传入的是按钮类型;
+            //2.searchType属于高级搜索还是普通搜索
+            //3.isRequire 是否为必填项
             mySearchList:this.searchList,
             //切换普通搜索、高级搜索
             showType:"ordinary",
-            //数据格式是否正确
-            isCorrect:[]
+            //数据格式是否正确,将数据格式不正确的组件以对象的形式保存到改数据中
+            isCorrect:[],
+            //输入框size设置（设置el-ui size）值为：medium、small、mini 主要影响高度
+            mySize:this.size,
+            //输入框宽度
+            myWidth:this.width,
         }
     },
     props:{
@@ -50,7 +59,22 @@ export default {
             default:function(){
                 return[]
             }
-        }
+        },
+        //输入框size设置（设置el-ui size）
+        size:{
+            type:String,
+            default:function(){
+                return "medium"
+            }
+        },
+
+        width:{
+            type:String,
+            default:function(){
+                return "150px"
+            }
+        },
+
     },
     methods:{  
         //点击普通搜索或者高级搜索，切换搜索类型
@@ -203,6 +227,7 @@ export default {
             }
         }
     },
+    
     //监控外部传入的searchList,当searchList变化是赋值给mySearchList重新渲染
     watch:{
         searchList:{
@@ -227,7 +252,16 @@ export default {
     }
 
     .search_container li{
-        margin:0 15px 15px 0px;
+        margin:0 30px 15px 0px;
     }
-
 </style>
+
+<style>
+    .active_border{
+        border-radius: 4px;
+        border: 1px solid red;  
+    }
+</style>
+
+
+

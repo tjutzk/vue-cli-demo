@@ -6,7 +6,9 @@
                 v-model="radioData.value"
                 v-for="item in radioData.options"
                 :key="item.id"
-                :label="item.id">
+                :label="item.id"
+                :size="mySize"
+                :class="{active_border:isActive()}">
                 {{item.label}}
             </el-radio>
             <span class="radio_require" v-show="radioData.isRequire">*</span>
@@ -18,7 +20,8 @@
 export default {
     data () {
         return {
-            radioData:this.data
+            radioData:this.data,
+            mySize:this.size,
         }
     },
     props:{
@@ -27,7 +30,20 @@ export default {
             default:function(){
                 return {}
             }
-		}
+        },
+        size:{
+            type:String,
+            default:function(){
+                return {}
+            }
+        },
+    },
+    methods:{
+        isActive(){
+            if(this.radioData.isRequire){
+                return String(this.radioData.value)=="" ? true : false
+            }
+        }, 
     }
 }
 </script>
@@ -42,6 +58,7 @@ export default {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
+        margin-left: 10px;
     }
 
     .radio_content span{

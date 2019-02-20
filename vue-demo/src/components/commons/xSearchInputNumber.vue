@@ -3,10 +3,16 @@
         <span>{{data.name}}</span>
         <div class="number_content">
             <div class="number_require">
-                <el-input :value="inputData.value" placeholder="请输入" @change="valueChange()"></el-input>
+                <el-input 
+                    v-model="inputData.value" 
+                    placeholder="请输入" 
+                    @change="valueChange()" 
+                    :size="mySize" 
+                    :style="styleObject">
+                </el-input>
                 <span v-show="inputData.isRequire">*</span>
             </div>
-            <p v-show="!isCorrect">不全是数字，请重新输入</p>
+            <p v-show="!isCorrect.result">不全是数字，请重新输入</p>
         </div>
     </div>
 </template>
@@ -20,6 +26,14 @@ export default {
     data () {
         return {
             inputData:this.data,
+            mySize:this.size,
+            isCorrect:{
+                uncorrectTitle:this.data.name,
+                result:true,
+            },
+            styleObject:{
+                width:this.width,
+            },
         }
     },
     props:{
@@ -29,16 +43,28 @@ export default {
                 return {}
             }
         },
+        size:{
+            type:String,
+            default:function(){
+                return {}
+            }
+        },
+        width:{
+            type:String,
+            default:function(){
+                return ""
+            }
+        }
     },
     methods:{
     //校验是否是数字
-    valueChange(value){
-        if(value){
-            /^[0-9]*$/.test(value) ? this.isCorrect=true : this.isCorrect=false
-            this.$emit(EVENTS.CHECK_DATA_FORMAT,this.isCorrect)
+        valueChange(value){
+            if(value){
+                this.isCorrect.result = /^[0-9]*$/.test(value) ? true : false
+                this.$emit(EVENTS.CHECK_DATA_FORMAT,this.isCorrect)
+            }
         }
     }
-}
 }
 </script>
 
@@ -53,6 +79,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    margin-left: 10px;
 }
 
 .number_content p{

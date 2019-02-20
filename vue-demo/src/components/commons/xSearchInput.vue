@@ -2,7 +2,13 @@
     <div class="input_container">
         <span>{{inputData.name}}</span>
         <div class="required_mark">
-            <el-input v-model="inputData.value" placeholder="请输入" :class="{active:inputData.isrequiore}"></el-input>
+            <el-input 
+                v-model="inputData.value" 
+                placeholder="请输入"  
+                :size="mySize" 
+                :style="styleObject"
+                :class="{active_border:isActive()}">
+            </el-input>
             <span v-show="inputData.isRequire">*</span>
         </div>
         
@@ -14,6 +20,10 @@ export default {
     data () {
         return {
             inputData:this.data,
+            mySize:this.size,
+            styleObject:{
+                width:this.width,
+            }
         }
     },
     props:{
@@ -23,7 +33,27 @@ export default {
                 return {}
             }
         },
+        size:{
+            type:String,
+            default:function(){
+                return ""
+            }
+        },
+        width:{
+            type:String,
+            default:function(){
+                return ""
+            }
+        }
     },
+
+    methods:{
+        isActive(){
+            if(this.inputData.isRequire){
+                return this.inputData.value=="" ? true : false
+            }
+        }
+    }
 }
 </script>
 
@@ -37,17 +67,17 @@ export default {
 .required_mark{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start
+    justify-content: flex-start;
+    margin-left: 10px;
 }
 
 .required_mark span{
     font-size: 20px;
     color: red;
 }
-
-.active{
-    border: 1px solid red;
-}
 </style>
+
+
+
 
 

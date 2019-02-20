@@ -1,5 +1,5 @@
 <template>
-    <el-button type="primary" @click="onClick(data.value)">{{data.name}}</el-button>
+    <el-button type="primary" @click="onClick(data.value)" :size="mySize">{{data.name}}</el-button>
 </template>
 
 <script>
@@ -10,13 +10,24 @@ const EVENTS = {
         ONCLICK_CLEAR_BTN:'onclick-clear-btn',
     }
 export default {
+    data () {
+        return {
+            mySize:this.size
+        }
+    },
     props:{
         data:{
 			type:Object,
             default:function(){
                 return {}
             }
-		}
+        },
+        size:{
+            type:String,
+            default:function(){
+                return ""
+            }
+        },
     },
     methods:{
         //
